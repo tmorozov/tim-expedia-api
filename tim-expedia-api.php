@@ -78,7 +78,8 @@ if ( ! class_exists( 'TimExpediaApi' ) ) {
     {
       $section = $this->tag;
 
-      // register_setting( $section, $this->tag, array( &$this, 'options_validate') );
+      register_setting( $section, $this->tag, array( &$this, 'options_validate') );
+      
       add_settings_section(
         $this->tag . '_settings_section',
         'API key Settings',
@@ -88,9 +89,46 @@ if ( ! class_exists( 'TimExpediaApi' ) ) {
         $section
       );
 
-      // add_settings_field('plugin_text_string', 'Plugin Text Input', 'plugin_setting_string', 'plugin', 'plugin_main');
+      add_settings_field(
+        $this->tag . '_' . 'apiKey' . '_settings', 
+        'Api Key', 
+        array( &$this, 'apikey_settings_field' ),
+        $section,
+        $this->tag . '_settings_section');
+
+      // add_settings_field(
+      //   $this->tag . '_' . 'apiKey' . '_settings',
+      //   'apiKey',
+      //   array( &$this, 'apikey_settings_field' ),
+      //   $section,
+      //   $this->tag . '_settings_section',
+      //   $options
+      // );      
     }
 
+    public function apikey_settings_field() {
+      $options = get_option($this->tag);
+      $atts = array(
+        'id' => $this->tag . '_apikey',
+        'name' => $this->tag . '[apiKey]',
+        'type' => 'text' ,
+        'value' => $options['apiKey']
+      );
+      
+      array_walk( $atts, function( &$item, $key ) {
+        $item = esc_attr( $key ) . '="' . esc_attr( $item ) . '"';
+      } );
+
+      echo '<input ' . implode( ' ', $atts ) . '/>';
+    }
+
+    public function options_validate($input) {
+      $newinput['apiKey'] = trim($input['apiKey']);
+      if(!preg_match('/^[a-z0-9]*$/i', $newinput['apiKey'])) {
+        $newinput['apiKey'] = 'a';
+      }
+      return $newinput;      
+    }
   }
 
   new TimExpediaApi;
