@@ -34,6 +34,8 @@ if ( ! class_exists( 'TimExpediaApi' ) ) {
     {
       if ( is_admin() ) {
         add_action('admin_menu', array( &$this, 'create_settings_page') );
+
+        add_action('admin_init', array( &$this, 'create_settings_fields') );
       }
     }
 
@@ -56,7 +58,7 @@ if ( ! class_exists( 'TimExpediaApi' ) ) {
     {
       ?>
         <div>
-          <h2><?=$this->name?> Options</h2>
+          <h2><?=$this->name?></h2>
           <form action="options.php" method="post">
             <?php settings_fields($this->tag); ?>
             <?php do_settings_sections($this->tag); ?>
@@ -65,7 +67,30 @@ if ( ! class_exists( 'TimExpediaApi' ) ) {
         </div>
       <?php      
     }
-    
+
+
+    /**
+     * Add settings fields
+     *
+     * @access public
+     */
+    public function create_settings_fields()
+    {
+      $section = $this->tag;
+
+      // register_setting( $section, $this->tag, array( &$this, 'options_validate') );
+      add_settings_section(
+        $this->tag . '_settings_section',
+        'API key Settings',
+        function () {
+          echo '<p>Values provided by Expedia for quering API.</p>';
+        },
+        $section
+      );
+
+      // add_settings_field('plugin_text_string', 'Plugin Text Input', 'plugin_setting_string', 'plugin', 'plugin_main');
+    }
+
   }
 
   new TimExpediaApi;
