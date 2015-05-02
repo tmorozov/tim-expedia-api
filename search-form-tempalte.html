@@ -1,0 +1,162 @@
+<form id="SearchBoxForm" method="get" action="/list/?lang=en&currency=USD&secureUrlFromDataBridge=https%3A%2F%2Fwww.travelnow.com&requestVersion=V2">
+<!--   <input type="hidden" name="pagename" id="pagename" value="ToSearchResults"/>
+  <input type="hidden" name="lang" value="en">
+  <input type="hidden" name="currency" value="USD">
+  <input type="hidden" name="secureUrlFromDataBridge" value="https%3A%2F%2Fwww.travelnow.com">
+  <input type="hidden" name="requestVersion" value="V2">
+ -->
+  <fieldset >
+    <div id="DestinationField" class="fullColumn">
+      <label for="SearchBox_DestinationName" class="labelTextTitle fullWidth">Where would you like to go?</label>
+      <input type="text" id="SearchBox_DestinationName" name="destination" class="fullWidth" value="">
+<!--       <input type="hidden" id="search-box-destination-without-hotel-name" name="destinationWithoutHotelName" value="">
+      <input type="hidden" id="search-box-initial-destination" name="initialDestination" value="">
+      <input type="hidden" name="targetId" id="SearchBox_TargetId">
+ -->    
+    </div>
+  </fieldset>
+
+  <fieldset id="check-in-out">
+    <div class="first">
+      <label for="checkin">
+        <span>Check-in</span>
+        <input type="text" id="checkin" name="checkin" value="05/05/2015"/>
+        <!-- <input type="hidden" value='5/5/2015' id="standardCheckin" name="standardCheckin" /> -->
+      </label>
+    </div>
+  
+    <div>
+      <label for="checkout">
+        <span>Check-out</span>
+        <input type="text" id="checkout" name="checkout" value="05/07/2015"/>
+        <!-- <input type="hidden" value='5/7/2015' id="standardCheckout" name="standardCheckout" /> -->
+      </label>
+    </div>
+  </fieldset>
+
+  <input type="hidden" name="roomsCount" value="1" id="roomsCount">
+  
+  <ol id="rooms-and-guests">
+    <li class='first'>
+      <fieldset>
+        <legend>Room 1</legend>
+        <label for="rooms[0].adultsCount" class="adults">
+          <span class="label">Adults<br><span>(18+)</span></span>
+          <select name="rooms[0].adultsCount" id="rooms0.adultsCount">
+            <option value="1">1</option>
+            <option value="2" selected>2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </label>
+
+        <label for="rooms[0].childrenCount" class="children">
+          <span class="label">Children<br><span>(0-17)</span></span>
+          <select name="rooms[0].childrenCount" id="rooms0.childrenCount">
+            <option value="0" selected>0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </label>
+
+        <fieldset class="children-ages">
+          <legend>Age</legend>
+          <ul class="child-ages">
+            <li>
+              <label for="rooms[0].children[0].age">
+                <select name="rooms[0].children[0].age" id="rooms[0].children[0].age" disabled>
+                  <option value="">—</option>
+                  <option value="0">&lt;1</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                </select>
+              </label>
+            </li>
+
+            <li>
+              <label for="rooms[0].children[1].age">
+                <select name="rooms[0].children[1].age" id="rooms[0].children[1].age" disabled>
+                  <option value="">—</option>
+                  <option value="0">&lt;1</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                </select>
+              </label>
+            </li>
+
+            <li>
+              <label for="rooms[0].children[2].age">
+                <select name="rooms[0].children[2].age" id="rooms[0].children[2].age" disabled>
+                  <option value="">—</option>
+                  <option value="0">&lt;1</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                </select>
+              </label>
+            </li>
+          </ul>
+
+        </fieldset>
+
+      </fieldset>
+    </li>
+
+    <li class="add-row">
+       <button>Add room</button>
+    </li>
+  </ol>
+
+  <button type="submit" class="button" id="SearchBox_Submit" name="Search" value="search">Search</button>
+
+  <div class="finalError">
+    Please correct the errors above before proceeding
+  </div>
+</form>
+
+

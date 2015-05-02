@@ -25,7 +25,7 @@ class TimExpediaApiSearchWidget extends WP_Widget {
     if ( ! empty( $instance['title'] ) ) {
       echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ). $args['after_title'];
     }
-    echo __( 'Hello, World!', 'text_domain' );
+    echo file_get_contents(TIMEXPAPI__PLUGIN_DIR . "search-form-tempalte.html");
     echo $args['after_widget'];
   }
 
