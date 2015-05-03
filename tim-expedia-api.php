@@ -22,7 +22,9 @@ new TimExpediaApiOptionsPage;
 
 // register search widget
 require_once( TIMEXPAPI__PLUGIN_DIR . 'widget-search.php' );
+require_once( TIMEXPAPI__PLUGIN_DIR . 'widget-list.php' );
 function register_timexpapi_widgets() {
   register_widget("TimExpediaApiSearchWidget");
+  register_widget("TimExpediaApiListWidget");
 }
 add_action( 'widgets_init', 'register_timexpapi_widgets' );
