@@ -88,6 +88,7 @@ class TimExpediaApiListWidget extends WP_Widget {
                 <em>
                   <strong class="rating"><?=$value['tripAdvisorRating']?></strong> of 5 stars
                 </em>
+                <img src="<?=$value['tripAdvisorRatingUrl']?>" >
               </span>
 
               <a href="#" target="_blank" class="taReviewCount"><?=$value['tripAdvisorReviewCount']?> reviews</a>
@@ -104,7 +105,7 @@ class TimExpediaApiListWidget extends WP_Widget {
             <div class="smallText">Total From</div>
 
             <a href="<?=$value['deepLink']?>" target="_blank">
-              <div class="largePrice">$1,280</div>
+              <div class="largePrice"><?=$value['lowRate']?></div>
             </a>
 
             <a href="<?=$value['deepLink']?>" class="button" target="_blank">Select</a>
