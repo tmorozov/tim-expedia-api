@@ -46,20 +46,38 @@ class TimExpediaApiListWidget extends WP_Widget {
     $myapi->set_locale($locale);
 
     // get hotels list for specified destination
-    $hotels = $myapi->getHotelList(array(
-      'destinationString' => 'chicago',
-      'arrivalDate' => '10/10/2015',
-      'departureDate' => '10/11/2015',
-      'numberOfResults' => 5,
-      'room1' => 1
-    ));
+    // lang=en
+    // currency=USD
+    // destination=Kiev
+    // checkin=05%2F15%2F2015
+    // checkout=05%2F16%2F2015
+    // roomsCount=1
+    // rooms%5B0%5D.adultsCount=1
+    // rooms%5B0%5D.childrenCount=0
+ 
+    $params = TimExpediaApiListWidget::parseParams();
+    $hotels = $myapi->getHotelList($params);
+    TimExpediaApiListWidget::renderResult($hotels);
 
-    //list total hotels available in search
-    echo "getTotalHotels:" . $myapi->getTotalHotels() . "<br>";
+    echo $args['after_widget'];
+  }
 
-    // list hotels available in return list
-    echo "getAvailableHotels:" . $myapi->getAvailableHotels() . "<br>";
+  private static function parseParams() {
+    $params = array();
+    $params['destinationString'] = $_GET['destination'];
+    $params['arrivalDate'] = $_GET['checkin'];
+    $params['departureDate'] = $_GET['checkout'];
+    // TODO: load from settings
+    $params['numberOfResults'] = 5;
 
+    // TODO: load children
+    // TODO: load other rooms
+    $params['room1'] = $_GET['rooms']['0']['adultsCount'];
+
+    return $params;
+  }
+
+  private static function renderResult($hotels) {
     echo "<ul>";
     foreach($hotels  as $key => $value) {
       ?>
@@ -117,13 +135,7 @@ class TimExpediaApiListWidget extends WP_Widget {
 
     echo "</ul>";
 
-    // echo '<pre>';
-    // echo json_encode( $hotels);
-    // echo '</pre>';
-
-    echo $args['after_widget'];
   }
-
   /**
    * Back-end widget form.
    *
