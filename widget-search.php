@@ -1,5 +1,8 @@
 <?php
 
+require_once(TIMEXPAPI__PLUGIN_DIR . "search-form-renderer.php");
+
+
 class TimExpediaApiSearchWidget extends WP_Widget {
   /**
    * Register widget with WordPress.
@@ -21,11 +24,18 @@ class TimExpediaApiSearchWidget extends WP_Widget {
    * @param array $instance Saved values from database.
    */
   public function widget( $args, $instance ) {
+    wp_enqueue_script('jquery-ui-datepicker');
+    wp_enqueue_style('jquery-style', 'https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css');    
+    wp_enqueue_script('timexpapi-form', TIMEXPAPI__PLUGIN_URL.'js/app.js', array('jquery'));
+
     echo $args['before_widget'];
     if ( ! empty( $instance['title'] ) ) {
       echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ). $args['after_title'];
     }
-    echo file_get_contents(TIMEXPAPI__PLUGIN_DIR . "search-form-tempalte.html");
+
+    $params = array();
+    TimExpediaApiFormRenderer::renderForm($params);
+
     echo $args['after_widget'];
   }
 

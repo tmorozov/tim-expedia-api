@@ -1,3 +1,9 @@
+<?php
+
+class TimExpediaApiFormRenderer {
+  public static function renderForm($params) {
+    ?>
+
 <form class="js-search-hotel" method="get" action="/list/">
   <input type="hidden" name="lang" value="en">
   <input type="hidden" name="currency" value="USD">
@@ -104,3 +110,7 @@
 </form>
 
 
+
+    <?php    
+  }
+}
