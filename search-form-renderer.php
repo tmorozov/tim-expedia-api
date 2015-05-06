@@ -41,8 +41,9 @@ class TimExpediaApiFormRenderer {
     <li>
       <fieldset>
         <legend>Room 1</legend>
+
         <label class="adults">
-          <span class="label">Adults<br><span>(18+)</span></span>
+          <span class="label">Adults<span>(18+)</span></span>
           <select name="rooms[0][adultsCount]">
             <option value="1">1</option>
             <option value="2" selected>2</option>
@@ -52,8 +53,8 @@ class TimExpediaApiFormRenderer {
         </label>
 
         <label class="children">
-          <span class="label">Children<br><span>(0-17)</span></span>
-          <select name="rooms[0][childrenCount]">
+          <span class="label">Children<span>(0-17)</span></span>
+          <select class="js-children-count" name="rooms[0][childrenCount]">
             <option value="0" selected>0</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -102,14 +103,13 @@ class TimExpediaApiFormRenderer {
     </li>
   </ol>
 
-  <button type="submit" class="js-searchbox-submit">Search</button>
+  <button type="submit">Search</button>
 
   <div class="finalError">
     Please correct the errors above before proceeding
   </div>
+
 </form>
-
-
 
     <?php    
   }
