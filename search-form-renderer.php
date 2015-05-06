@@ -15,7 +15,7 @@ class TimExpediaApiFormRenderer {
   <fieldset class="destination">
     <div class="fullColumn">
       <label>Where would you like to go?</label>
-      <input class="js-destination-field" type="text" name="destination" value="">
+      <input class="js-destination-field" type="text" name="destination" value="" required />
     </div>
   </fieldset>
 
@@ -23,14 +23,14 @@ class TimExpediaApiFormRenderer {
     <div>
       <label>
         <span>Check-in</span>
-        <input class="js-checkin-date" type="text" name="checkin" value=""/>
+        <input class="js-checkin-date" type="text" name="checkin" value="" required />
       </label>
     </div>
   
     <div>
       <label>
         <span>Check-out</span>
-        <input class="js-checkout-date" type="text" name="checkout" value=""/>
+        <input class="js-checkout-date" type="text" name="checkout" value="" required />
       </label>
     </div>
   </fieldset>

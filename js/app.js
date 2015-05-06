@@ -1,30 +1,74 @@
-(function ($) {
+// namespace
+var timexpapiFormApp = {};
 
-  var timexpapiFormApp = {
+// datepicker module
+(function ($, app) {
+  var $checkinDate;
+  var $checkoutDate;
 
-    start: function () {
-      var $checkinDate = $('.js-checkin-date');
-      var $checkoutDate = $('.js-checkout-date');
-
-      $checkinDate.datepicker({
-        dateFormat : 'mm/dd/yy',
-        minDate: -0,
-        onClose: function( selectedDate ) {
-          $checkoutDate.datepicker( "option", "minDate", selectedDate );
-        }
-      });
-
-      $checkoutDate.datepicker({
-        dateFormat : 'mm/dd/yy',
-        minDate: -0
-      });
+  function updateMaxCheckIn () {
+    var date2 = $checkoutDate.datepicker('getDate');
+    if(!date2) {
+      return;
     }
+    date2.setDate(date2.getDate()-1);
+    $checkinDate.datepicker( "option", "maxDate", date2 );
+  }
+
+  function updateMinCheckOut () {
+    var date2 = $checkinDate.datepicker('getDate');
+    if(!date2) {
+      return;
+    }
+    date2.setDate(date2.getDate()+1);
+    $checkoutDate.datepicker( "option", "minDate", date2 );
+  }
+
+  function start () {
+    $checkinDate = $('.js-checkin-date');
+    $checkoutDate = $('.js-checkout-date');
+
+    $checkinDate.datepicker({
+      dateFormat : 'mm/dd/yy',
+      minDate: -0,
+      onClose: function( selectedDate ) {
+        updateMinCheckOut();
+      }
+    });
+
+    $checkoutDate.datepicker({
+      dateFormat : 'mm/dd/yy',
+      minDate: +1,
+      onClose: function( selectedDate ) {
+        updateMaxCheckIn();
+      }
+    });
+  }
+
+  // export:
+  app.datepicker =  {
+    start: start
   };
 
+})(jQuery, timexpapiFormApp);
+
+
+// app start
+(function ($, app) {
+
+  app.start = function start () {
+    app.datepicker.start();
+  }
+
+})(jQuery, timexpapiFormApp);
+
+
+// start all (entry point)
+(function ($, app) {
 
   $(function () {
-    timexpapiFormApp.start();
+    app.start();
   });
 
-})(jQuery);
+})(jQuery, timexpapiFormApp);
 
