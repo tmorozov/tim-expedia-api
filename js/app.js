@@ -12,8 +12,8 @@
           children: []
         },{
           adultsCount: 1,
-          childrenCount: 3,
-          children: [1,1,1]
+          childrenCount: 2,
+          children: [1,5]
         }]
       });
     });
@@ -26,7 +26,7 @@
 (function ($, app) {
 
   Handlebars.partials = Handlebars.templates;
-  
+
   $(function () {
     app.start();
   });

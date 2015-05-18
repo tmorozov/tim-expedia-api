@@ -1,16 +1,16 @@
 (function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
 templates['rooms'] = template({"1":function(depth0,helpers,partials,data,blockParams,depths) {
-    var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
+    var stack1, helper, alias1=helpers.helperMissing, alias2=this.escapeExpression, alias3="function";
 
   return "<li>\r\n  <fieldset >\r\n    <legend style=\"position: relative; left: 10px;\">Room "
-    + alias3(((helper = (helper = helpers.index || (data && data.index)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"index","hash":{},"data":data}) : helper)))
+    + alias2((helpers.math || (depth0 && depth0.math) || alias1).call(depth0,(data && data.index),"+",1,{"name":"math","hash":{},"data":data}))
     + "</legend>\r\n\r\n    <label class=\"adults grid-25\">\r\n      <span class=\"label\">Adults<span>(18+)</span></span>\r\n      <select name=\"rooms["
-    + alias3(((helper = (helper = helpers.index || (data && data.index)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"index","hash":{},"data":data}) : helper)))
+    + alias2(((helper = (helper = helpers.index || (data && data.index)) != null ? helper : alias1),(typeof helper === alias3 ? helper.call(depth0,{"name":"index","hash":{},"data":data}) : helper)))
     + "][adultsCount]\">\r\n"
     + ((stack1 = (helpers.select || (depth0 && depth0.select) || alias1).call(depth0,(depth0 != null ? depth0.adultsCount : depth0),{"name":"select","hash":{},"fn":this.program(2, data, 0, blockParams, depths),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "      </select>\r\n    </label>\r\n\r\n    <label class=\"children grid-25\">\r\n      <span class=\"label\">Children<span>(0-17)</span></span>\r\n      <select class=\"js-children-count\" name=\"rooms["
-    + alias3(((helper = (helper = helpers.index || (data && data.index)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"index","hash":{},"data":data}) : helper)))
+    + alias2(((helper = (helper = helpers.index || (data && data.index)) != null ? helper : alias1),(typeof helper === alias3 ? helper.call(depth0,{"name":"index","hash":{},"data":data}) : helper)))
     + "][childrenCount]\">\r\n"
     + ((stack1 = (helpers.select || (depth0 && depth0.select) || alias1).call(depth0,(depth0 != null ? depth0.childrenCount : depth0),{"name":"select","hash":{},"fn":this.program(4, data, 0, blockParams, depths),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "      </select>\r\n    </label>\r\n\r\n    <fieldset class=\"children-ages\" >\r\n"

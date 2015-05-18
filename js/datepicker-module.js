@@ -21,9 +21,9 @@
     $checkoutDate.datepicker( "option", "minDate", date2 );
   }
 
-  function start () {
-    $checkinDate = $('.js-checkin-date');
-    $checkoutDate = $('.js-checkout-date');
+  function start ($el) {
+    $checkinDate = $el.find('.js-checkin-date');
+    $checkoutDate = $el.find('.js-checkout-date');
 
     $checkinDate.datepicker({
       dateFormat : 'mm/dd/yy',
