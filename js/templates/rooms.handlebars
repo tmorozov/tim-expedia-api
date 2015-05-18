@@ -1,0 +1,75 @@
+{{#each rooms}}
+<li>
+  <fieldset >
+    <legend style="position: relative; left: 10px;">Room {{@index}}</legend>
+
+    <label class="adults grid-25">
+      <span class="label">Adults<span>(18+)</span></span>
+      <select name="rooms[{{@index}}][adultsCount]">
+        {{#select adultsCount}}
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        {{/select}}
+      </select>
+    </label>
+
+    <label class="children grid-25">
+      <span class="label">Children<span>(0-17)</span></span>
+      <select class="js-children-count" name="rooms[{{@index}}][childrenCount]">
+        {{#select childrenCount}}
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        {{/select}}
+      </select>
+    </label>
+
+    <fieldset class="children-ages" >
+      {{#if children}}
+      <legend style="position: relative; left: 10px;">Age</legend>
+      <ul style="margin-left: 0;">
+
+        {{#each children}}
+        <li class="grid-30">
+          <label>
+            <select name="rooms[{{@../index}}][children][{{@index}}]" required>
+              {{#select this}}
+              <option value="">—</option>
+              <option value="0">&lt;1</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              {{/select}}
+            </select>
+          </label>
+        </li>
+        {{/each}}
+      </ul>
+      {{/if}}
+    </fieldset>
+
+  </fieldset>
+</li>
+{{/each}}
+
+
+<li class="add-row">
+   <button class="js-add-room">Add room</button>
+</li>
