@@ -27,6 +27,8 @@ class TimExpediaApiSearchWidget extends WP_Widget {
     wp_enqueue_script('jquery-ui-datepicker');
     wp_enqueue_style('jquery-style', 'https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css');    
     wp_enqueue_script('handlebars', TIMEXPAPI__PLUGIN_URL.'js/3party/handlebars-v3.0.3.js', array());
+    wp_enqueue_script('timexpapi-form', TIMEXPAPI__PLUGIN_URL.'js/namespace.js', array('jquery'));
+    wp_enqueue_script('timexpapi-form', TIMEXPAPI__PLUGIN_URL.'js/datepicker-module.js', array('jquery'));
     wp_enqueue_script('timexpapi-form', TIMEXPAPI__PLUGIN_URL.'js/app.js', array('jquery'));
 
     echo $args['before_widget'];
