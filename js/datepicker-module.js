@@ -1,50 +1,50 @@
 // datepicker module
 (function ($, app) {
-  var $checkinDate;
-  var $checkoutDate;
 
-  function updateMaxCheckIn () {
-    var date2 = $checkoutDate.datepicker('getDate');
-    if(!date2) {
-      return;
-    }
-    date2.setDate(date2.getDate()-1);
-    $checkinDate.datepicker( "option", "maxDate", date2 );
-  }
-
-  function updateMinCheckOut () {
-    var date2 = $checkinDate.datepicker('getDate');
-    if(!date2) {
-      return;
-    }
-    date2.setDate(date2.getDate()+1);
-    $checkoutDate.datepicker( "option", "minDate", date2 );
-  }
-
-  function start ($el) {
-    $checkinDate = $el.find('.js-checkin-date');
-    $checkoutDate = $el.find('.js-checkout-date');
-
-    $checkinDate.datepicker({
-      dateFormat : 'mm/dd/yy',
-      minDate: -0,
-      onClose: function( selectedDate ) {
-        updateMinCheckOut();
+  var Datepicker = {
+    updateMaxCheckIn: function updateMaxCheckIn () {
+      var date2 = this.$checkoutDate.datepicker('getDate');
+      if(!date2) {
+        return;
       }
-    });
+      date2.setDate(date2.getDate()-1);
+      this.$checkinDate.datepicker( "option", "maxDate", date2 );
+    },
 
-    $checkoutDate.datepicker({
-      dateFormat : 'mm/dd/yy',
-      minDate: +1,
-      onClose: function( selectedDate ) {
-        updateMaxCheckIn();
+    updateMinCheckOut: function updateMinCheckOut () {
+      var date2 = this.$checkinDate.datepicker('getDate');
+      if(!date2) {
+        return;
       }
-    });
-  }
+      date2.setDate(date2.getDate()+1);
+      this.$checkoutDate.datepicker( "option", "minDate", date2 );
+    },
+
+    start: function start ($el) {
+      this.$checkinDate = $el.find('.js-checkin-date');
+      this.$checkoutDate = $el.find('.js-checkout-date');
+
+      var self = this;
+      this.$checkinDate.datepicker({
+        dateFormat : 'mm/dd/yy',
+        minDate: -0,
+        onClose: function( selectedDate ) {
+          self.updateMinCheckOut();
+        }
+      });
+
+      this.$checkoutDate.datepicker({
+        dateFormat : 'mm/dd/yy',
+        minDate: +1,
+        onClose: function( selectedDate ) {
+          self.updateMaxCheckIn();
+        }
+      });
+    }
+
+  };
 
   // export:
-  app.datepicker =  {
-    start: start
-  };
+  app.datepicker = Datepicker;
 
 })(jQuery, timexpapiFormApp);
