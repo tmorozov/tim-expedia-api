@@ -72,7 +72,9 @@ class TimExpediaApiListWidget extends WP_Widget {
 
     // TODO: load children
     foreach ($_GET['rooms'] as $key => $value) {
-      $params['room' . ($key+1)] = $value['adultsCount'];// . ",13,6";
+      // $value['adultsCount'];// . ",13,6";
+      $roomGuests = count($value['children']) > 0 ?  $value['adultsCount'].",".implode(",", $value['children']) : $value['adultsCount'];
+      $params['room' . ($key+1)] = $roomGuests;
     }
 
     return $params;
