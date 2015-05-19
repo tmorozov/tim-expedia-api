@@ -3,9 +3,9 @@
   <fieldset >
     <legend style="position: relative; left: 10px;">Room {{math @index "+" 1}}</legend>
 
-    <label class="adults grid-25">
-      <span class="label">Adults<span>(18+)</span></span>
-      <select name="rooms[{{@index}}][adultsCount]">
+    <label class="grid-25">
+      <span>Adults<span>(18+)</span></span>
+      <select class="js-adults-count" name="rooms[{{@index}}][adultsCount]">
         {{#select adultsCount}}
         <option value="1">1</option>
         <option value="2">2</option>
@@ -15,8 +15,8 @@
       </select>
     </label>
 
-    <label class="children grid-25">
-      <span class="label">Children<span>(0-17)</span></span>
+    <label class="grid-25">
+      <span>Children<span>(0-17)</span></span>
       <select class="js-children-count" name="rooms[{{@index}}][childrenCount]">
         {{#select childrenCount}}
         <option value="0">0</option>
@@ -27,7 +27,7 @@
       </select>
     </label>
 
-    <fieldset class="children-ages" >
+    <fieldset class="grid-40" >
       {{#if children}}
       <legend style="position: relative; left: 10px;">Age</legend>
       <ul style="margin-left: 0;">
@@ -35,7 +35,7 @@
         {{#each children}}
         <li class="grid-30">
           <label>
-            <select name="rooms[{{@../index}}][children][{{@index}}]" required>
+            <select class="js-child-age" name="rooms[{{@../index}}][children][{{@index}}]" required>
               {{#select this}}
               <option value="">—</option>
               <option value="0">&lt;1</option>
@@ -65,11 +65,16 @@
       {{/if}}
     </fieldset>
 
+    <label class="grid-10">
+      <span>Remove room</span>
+      <button class="js-remove-room" data-room="{{@index}}">X</button>
+    </label>
+
   </fieldset>
 </li>
 {{/each}}
 
 
-<li class="add-row">
+<li>
    <button class="js-add-room">Add room</button>
 </li>

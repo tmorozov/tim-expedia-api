@@ -13,10 +13,6 @@
           adultsCount: 2,
           childrenCount: 0,
           children: []
-        },{
-          adultsCount: 1,
-          childrenCount: 2,
-          children: [1,5]
         }]
       });
     });

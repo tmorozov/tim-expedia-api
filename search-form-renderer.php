@@ -37,6 +37,7 @@ class TimExpediaApiFormRenderer {
 
   <input class="js-room-count" type="hidden" name="roomsCount" value="1">
   
+  <!-- will be renndered by JS app -->
   <ol class="js-rooms-and-guests" style="margin-left: 0;">
   </ol>
 
