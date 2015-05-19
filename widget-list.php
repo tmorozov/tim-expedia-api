@@ -70,7 +70,6 @@ class TimExpediaApiListWidget extends WP_Widget {
     // TODO: load from settings
     $params['numberOfResults'] = 5;
 
-    // TODO: load children
     foreach ($_GET['rooms'] as $key => $value) {
       // $value['adultsCount'];// . ",13,6";
       $roomGuests = count($value['children']) > 0 ?  $value['adultsCount'].",".implode(",", $value['children']) : $value['adultsCount'];
@@ -83,6 +82,10 @@ class TimExpediaApiListWidget extends WP_Widget {
   private static function renderResult($hotels) {
     echo "<ul>";
     foreach($hotels  as $key => $value) {
+      $bestPrice = $value['lowRate'];
+      if( isset($value["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@total"]) ) {
+        $bestPrice = $value["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@total"];
+      }
       ?>
       <li id="<?=$value['hotelId']?>" class="resultList">
         <div class="result">
@@ -126,7 +129,7 @@ class TimExpediaApiListWidget extends WP_Widget {
             <div class="smallText">Total From</div>
 
             <a href="<?=$value['deepLink']?>" target="_blank">
-              <div class="largePrice"><?=$value['lowRate']?></div>
+              <div class="largePrice"><?=$bestPrice?></div>
             </a>
 
             <a href="<?=$value['deepLink']?>" class="button" target="_blank">Select</a>
