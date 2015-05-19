@@ -1,20 +1,19 @@
 // app start
 (function ($, app) {
 
-  app.start = function start () {
+  app.start = function start (options) {
+    // clone functionality for every widget
     $(".js-search-hotel").each(function (i) {
       var $el = $(this);
-      var datepickerInstance = $.extend({}, app.datepicker);
-      datepickerInstance.start($el);
+      var optionsInstance = $.extend(true, {}, options);
       
-      var roomsInstance = $.extend({}, app.rooms);
-      roomsInstance.start($el, {
-        rooms: [{
-          adultsCount: 2,
-          childrenCount: 0,
-          children: []
-        }]
-      });
+      $.extend({}, app.datepicker)
+        .start($el);
+
+      $.extend({}, app.rooms)
+        .start($el, {
+          rooms: optionsInstance.rooms
+        });
     });
   }
 
@@ -24,10 +23,17 @@
 // start all (entry point)
 (function ($, app) {
 
-  Handlebars.partials = Handlebars.templates;
+  // default values: 1 room 2 adults
+  var options = {
+    rooms: [{
+      adultsCount: 2,
+      childrenCount: 0,
+      children: []
+    }]
+  };
 
   $(function () {
-    app.start();
+    app.start(options);
   });
 
 })(jQuery, timexpapiFormApp);
