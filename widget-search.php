@@ -25,15 +25,18 @@ class TimExpediaApiSearchWidget extends WP_Widget {
    */
   public function widget( $args, $instance ) {
     wp_enqueue_script('jquery-ui-datepicker');
+    wp_enqueue_script('jquery-ui-autocomplete');
     wp_enqueue_style('jquery-style', 'https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css');    
+    wp_enqueue_style('timexpapi-search-style', TIMEXPAPI__PLUGIN_URL.'css/search-form.css');    
     wp_enqueue_script('handlebars', TIMEXPAPI__PLUGIN_URL.'js/3party/handlebars.runtime-v3.0.3.js', array());
-    wp_enqueue_script('timexpapi-helpers', TIMEXPAPI__PLUGIN_URL.'js/helpers.js', array('jquery', 'handlebars'));
-    wp_enqueue_script('timexpapi-templates', TIMEXPAPI__PLUGIN_URL.'js/templates.js', array('handlebars', 'timexpapi-helpers'));
-    wp_enqueue_script('timexpapi-namespace', TIMEXPAPI__PLUGIN_URL.'js/namespace.js', array('jquery'));
-    wp_enqueue_script('timexpapi-datepicker', TIMEXPAPI__PLUGIN_URL.'js/datepicker-module.js', array('jquery'));
-    wp_enqueue_script('timexpapi-rooms', TIMEXPAPI__PLUGIN_URL.'js/rooms-module.js', array('jquery'));
-    wp_enqueue_script('timexpapi-app', TIMEXPAPI__PLUGIN_URL.'js/app.js', array('jquery', 
-      'timexpapi-namespace', 'timexpapi-templates', 'timexpapi-datepicker', 'timexpapi-rooms'));
+    wp_enqueue_script('timexpapi-helpers', TIMEXPAPI__PLUGIN_URL.'js/search-form/helpers.js', array('jquery', 'handlebars'));
+    wp_enqueue_script('timexpapi-templates', TIMEXPAPI__PLUGIN_URL.'js/search-form/templates.js', array('handlebars', 'timexpapi-helpers'));
+    wp_enqueue_script('timexpapi-namespace', TIMEXPAPI__PLUGIN_URL.'js/search-form/namespace.js', array('jquery'));
+    wp_enqueue_script('timexpapi-datepicker', TIMEXPAPI__PLUGIN_URL.'js/search-form/datepicker-module.js', array('jquery'));
+    wp_enqueue_script('timexpapi-rooms', TIMEXPAPI__PLUGIN_URL.'js/search-form/rooms-module.js', array('jquery'));
+    wp_enqueue_script('timexpapi-destination', TIMEXPAPI__PLUGIN_URL.'js/search-form/destination-module.js', array('jquery', 'jquery-ui-autocomplete'));
+    wp_enqueue_script('timexpapi-app', TIMEXPAPI__PLUGIN_URL.'js/search-form/app.js', array('jquery', 
+      'timexpapi-namespace', 'timexpapi-templates', 'timexpapi-datepicker', 'timexpapi-rooms', 'timexpapi-destination'));
 
     echo $args['before_widget'];
     if ( ! empty( $instance['title'] ) ) {

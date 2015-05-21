@@ -14,6 +14,10 @@
         .start($el, {
           rooms: optionsInstance.rooms
         });
+
+      $.extend({}, app.destination)
+        .start($el, {
+        });
     });
   }
 
