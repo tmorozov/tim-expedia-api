@@ -1,6 +1,7 @@
 <?php
 
 require_once(TIMEXPAPI__PLUGIN_DIR . "expedia_api_wrapper/expedia-api.php");
+require_once(TIMEXPAPI__PLUGIN_DIR . "hotel-list-renderer.php");
 
 class TimExpediaApiListWidget extends WP_Widget {
   /**
@@ -57,7 +58,7 @@ class TimExpediaApiListWidget extends WP_Widget {
  
     $params = TimExpediaApiListWidget::parseParams();
     $hotels = $myapi->getHotelList($params);
-    TimExpediaApiListWidget::renderResult($hotels);
+    TimExpediaApiListRenderer::renderHotelList($hotels);
 
     echo $args['after_widget'];
   }
@@ -67,8 +68,9 @@ class TimExpediaApiListWidget extends WP_Widget {
     $params['destinationString'] = $_GET['destination'];
     $params['arrivalDate'] = $_GET['checkin'];
     $params['departureDate'] = $_GET['checkout'];
+
     // TODO: load from settings
-    $params['numberOfResults'] = 5;
+    $params['numberOfResults'] = 500;
 
     foreach ($_GET['rooms'] as $key => $value) {
       // $value['adultsCount'];// . ",13,6";
@@ -79,69 +81,6 @@ class TimExpediaApiListWidget extends WP_Widget {
     return $params;
   }
 
-  private static function renderResult($hotels) {
-    echo "<ul>";
-    foreach($hotels  as $key => $value) {
-      $bestPrice = $value['lowRate'];
-      if( isset($value["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@total"]) ) {
-        $bestPrice = $value["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@total"];
-      }
-      ?>
-      <li id="<?=$value['hotelId']?>" class="resultList">
-        <div class="result">
-          <div class="largeColumn">
-            <a href="<?=$value['deepLink']?>" class="thumb" target="_blank">
-              <img src="http://images.travelnow.com/<?=$value['thumbNailUrl']?>" 
-              alt="<?=$value['name']?>" width="70" height="70" 
-              title="<?=$value['name']?>">
-            </a>
-            <div class="informationColumn">
-              <h2>
-                <a href="<?=$value['deepLink']?>" target="_blank">
-                  <?=$value['name']?>
-                </a>
-              </h2>
-
-              <span class="star-rating star<?=$value['hotelRating']?>">
-                <em>
-                  <strong class="rating"><?=$value['hotelRating']?></strong> of 5 stars
-                </em>
-              </span>
-
-              <span class="tripadvisor-rating ta<?=$value['tripAdvisorRating']?>">
-                <em>
-                  <strong class="rating"><?=$value['tripAdvisorRating']?></strong> of 5 stars
-                </em>
-                <img src="<?=$value['tripAdvisorRatingUrl']?>" >
-              </span>
-
-              <a href="#" target="_blank" class="taReviewCount"><?=$value['tripAdvisorReviewCount']?> reviews</a>
-              <div class="clear">
-                <?=$value['locationDescription']?> |
-                <a class="showOnMapLink iconSet" href="#">
-                  <span class="iconText">Show on map</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        
-          <div class="smallColumn pricing">
-            <div class="smallText">Total From</div>
-
-            <a href="<?=$value['deepLink']?>" target="_blank">
-              <div class="largePrice"><?=$bestPrice?></div>
-            </a>
-
-            <a href="<?=$value['deepLink']?>" class="button" target="_blank">Select</a>
-          </div>
-        </div>
-      </li>      
-      <?php
-    }
-
-    echo "</ul>";
-
-  }
   /**
    * Back-end widget form.
    *
