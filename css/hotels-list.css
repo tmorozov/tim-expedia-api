@@ -34,3 +34,66 @@
   font-size: 22px;
   margin-bottom: 5px;
 }
+
+.star-rating {
+  text-indent: -1000em;
+  text-decoration: none;
+}
+
+.star-rating {
+  display: inline-block;
+  outline-width: 0;
+  overflow: hidden;
+  margin-right: 45px;
+}
+
+.star-rating, .star-rating em {
+    width: 75px;
+    height: 14px;
+    background-image: url("global-sprite.png");
+    background-repeat: no-repeat;
+}
+
+.star-rating.rating-5, .star-rating.rating-5 em {
+    background-position: -3px -72px;
+}
+
+.star-rating.rating-4-5, .star-rating.rating-4-5 em {
+    background-position: -3px -54px;
+}
+
+.star-rating.rating-4, .star-rating.rating-4 em {
+    background-position: -18px -72px;
+}
+
+.star-rating.rating-3-5, .star-rating.rating-3-5 em {
+    background-position: -18px -54px;
+}
+
+.star-rating.rating-3, .star-rating.rating-3 em {
+    background-position: -33px -72px;
+}
+
+.star-rating.rating-2-5, .star-rating.rating-2-5 em {
+    background-position: -33px -54px;
+}
+
+.star-rating.rating-2, .star-rating.rating-2 em {
+    background-position: -48px -72px;
+}
+
+.star-rating.rating-1-5, .star-rating.rating-1-5 em {
+    background-position: -48px -54px;
+}
+
+.star-rating.rating-1, .star-rating.rating-1 em {
+    background-position: -63px -72px;
+}
+
+.star-rating.rating-0-5, .star-rating.rating-0-5 em {
+    background-position: -63px -54px;
+}
+
+.star-rating.rating-0, .star-rating.rating-0 em {
+    background-position: -77px -72px;
+}

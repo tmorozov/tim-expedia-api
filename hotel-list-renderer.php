@@ -29,7 +29,7 @@ class TimExpediaApiListRenderer {
                 </a>
               </h2>
 
-              <span class="star-rating star<?=$value['hotelRating']?>">
+              <span class="star-rating rating-<?=str_replace('.', '-', $value['hotelRating'])?>" title="<?=$value['hotelRating']?>">
                 <em>
                   <strong class="rating"><?=$value['hotelRating']?></strong> of 5 stars
                 </em>
