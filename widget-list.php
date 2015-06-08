@@ -24,6 +24,8 @@ class TimExpediaApiListWidget extends WP_Widget {
    * @param array $instance Saved values from database.
    */
   public function widget( $args, $instance ) {
+    wp_enqueue_style('timexpapi-list-style', TIMEXPAPI__PLUGIN_URL.'css/hotels-list.css');
+
     echo $args['before_widget'];
     if ( ! empty( $instance['title'] ) ) {
       echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ). $args['after_title'];

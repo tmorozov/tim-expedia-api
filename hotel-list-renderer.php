@@ -12,15 +12,17 @@ class TimExpediaApiListRenderer {
         $bestPrice = $value["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@total"];
       }
       ?>
-      <li id="<?=$value['hotelId']?>" class="resultList">
-        <div class="result">
-          <div class="largeColumn">
-            <a href="<?=$value['deepLink']?>" class="thumb" target="_blank">
-              <img src="http://images.travelnow.com/<?=$value['thumbNailUrl']?>" 
-              alt="<?=$value['name']?>" width="70" height="70" 
-              title="<?=$value['name']?>">
-            </a>
-            <div class="informationColumn">
+      <li id="<?=$value['hotelId']?>" class="hotel-info grid-100">
+          <div class="hotel-info__vcard grid-75 tablet-grid-75">
+            <div class="hotel-info__image">
+              <a href="<?=$value['deepLink']?>" class="thumb" target="_blank">
+                <img src="http://images.travelnow.com/<?=$value['thumbNailUrl']?>" 
+                alt="<?=$value['name']?>" width="70" height="70" 
+                title="<?=$value['name']?>">
+              </a>
+            </div>
+
+            <div class="hotel-info__information">
               <h2>
                 <a href="<?=$value['deepLink']?>" target="_blank">
                   <?=$value['name']?>
@@ -34,10 +36,10 @@ class TimExpediaApiListRenderer {
               </span>
 
               <span class="tripadvisor-rating ta<?=$value['tripAdvisorRating']?>">
-                <em>
+<!--                 <em>
                   <strong class="rating"><?=$value['tripAdvisorRating']?></strong> of 5 stars
                 </em>
-                <img src="<?=$value['tripAdvisorRatingUrl']?>" >
+ -->                <img src="<?=$value['tripAdvisorRatingUrl']?>" >
               </span>
 
               <a href="#" target="_blank" class="taReviewCount"><?=$value['tripAdvisorReviewCount']?> reviews</a>
@@ -50,16 +52,15 @@ class TimExpediaApiListRenderer {
             </div>
           </div>
         
-          <div class="smallColumn pricing">
-            <div class="smallText">Total From</div>
+          <div class="hotel-info__pricing grid-25 tablet-grid-25">
+            <small>Total From</small>
 
             <a href="<?=$value['deepLink']?>" target="_blank">
-              <div class="largePrice"><?=$bestPrice?></div>
+              <div class="hotel-info__best-price">$<?=$bestPrice?></div>
             </a>
 
-            <a href="<?=$value['deepLink']?>" class="button" target="_blank">Select</a>
+            <a href="<?=$value['deepLink']?>" class="ut-btn red small round" style="margin: 0;" target="_blank">Select</a>
           </div>
-        </div>
       </li>      
       <?php
     }
