@@ -61,7 +61,7 @@
                   return {
                     label: item.d,
                     category: item.t,
-                    value: item.s
+                    value: item.l
                   };
                 }).sort(function (a, b) {
                   return a.category < b.category;
